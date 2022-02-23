@@ -1,18 +1,18 @@
-package no.hvl.dat102.test;
+package no.hvl.dat102.MengdeADTTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
 
-abstract class MengdeADTTest {
+public abstract class MengdeADTTest {
 
 	private MengdeADT<Integer> m1;
 	private MengdeADT<Integer> m2;
 	private MengdeADT<Integer> fasit;
-	
+
 	//Testdata
 	private Integer e0 = 1;
 	private Integer e1 = 2;
@@ -24,16 +24,16 @@ abstract class MengdeADTTest {
 	private Integer e7 = 8;
 	private Integer e8 = 9;
 	private Integer e9 = 10;
-	
+
 	protected abstract MengdeADT<Integer> reset();
-	
+
 	@BeforeEach
 	public final void setup() {
 		m1 = reset();
 		m2 = reset();
 		fasit = reset();
 	}
-	
+
 	@Test
 	void testUnionDisjunkte() {
 		fasit.leggTil(e0);
@@ -46,7 +46,7 @@ abstract class MengdeADTTest {
 		fasit.leggTil(e7);
 		fasit.leggTil(e8);
 		fasit.leggTil(e9);
-		
+
 		m1.leggTil(e0);
 		m1.leggTil(e1);
 		m1.leggTil(e2);
@@ -60,7 +60,7 @@ abstract class MengdeADTTest {
 		MengdeADT<Integer> begge = m1.union(m2);
 		assertTrue(fasit.equals(begge));
 	}
-	
+
 	@Test
 	void testUnionFelles() {
 		fasit.leggTil(e0);
@@ -70,7 +70,7 @@ abstract class MengdeADTTest {
 		fasit.leggTil(e4);
 		fasit.leggTil(e5);
 		fasit.leggTil(e6);
-		
+
 		m1.leggTil(e0);
 		m1.leggTil(e1);
 		m1.leggTil(e2);
@@ -84,7 +84,7 @@ abstract class MengdeADTTest {
 		MengdeADT<Integer> begge = m1.union(m2);
 		assertTrue(fasit.equals(begge));
 	}
-	
+
 	@Test
 	void testSnittDisjunkte() {
 		m1.leggTil(e0);
@@ -105,7 +105,7 @@ abstract class MengdeADTTest {
 		fasit.leggTil(e2);
 		fasit.leggTil(e3);
 		fasit.leggTil(e4);
-		
+
 		m1.leggTil(e0);
 		m1.leggTil(e1);
 		m1.leggTil(e2);
@@ -119,7 +119,7 @@ abstract class MengdeADTTest {
 		MengdeADT<Integer> snitt = m1.snitt(m2);
 		assertTrue(fasit.equals(snitt));
 	}
-	
+
 	@Test
 	void testDifferensDisjunkt() {
 		fasit.leggTil(e0);
@@ -127,7 +127,7 @@ abstract class MengdeADTTest {
 		fasit.leggTil(e2);
 		fasit.leggTil(e3);
 		fasit.leggTil(e4);
-		
+
 		m1.leggTil(e0);
 		m1.leggTil(e1);
 		m1.leggTil(e2);
@@ -145,7 +145,7 @@ abstract class MengdeADTTest {
 	void testDifferensFelles() {
 		fasit.leggTil(e0);
 		fasit.leggTil(e1);
-		
+
 		m1.leggTil(e0);
 		m1.leggTil(e1);
 		m1.leggTil(e2);

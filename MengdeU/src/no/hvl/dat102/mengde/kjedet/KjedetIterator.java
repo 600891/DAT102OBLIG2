@@ -2,15 +2,15 @@ package no.hvl.dat102.mengde.kjedet;
 
 //****************************************************************
 
-//    Representerer en iterator for en kjedet struktur av noder 
-//    kjedet lineært. 
+//    Representerer en iterator for en kjedet struktur av noder
+//    kjedet lineært.
 //****************************************************************
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * @author ole olsen
- * 
+ *
   */
 
 public class KjedetIterator<T> implements Iterator<T> {
@@ -29,7 +29,7 @@ public class KjedetIterator<T> implements Iterator<T> {
 	/************************************************************
 	 * Returnerer sann hvis iteratoren har minst ett element igjen.
 	 *************************************************************/
-		
+
 	@Override
 	public boolean hasNext() {
 		return (aktuell != null);
@@ -46,7 +46,7 @@ public class KjedetIterator<T> implements Iterator<T> {
 			throw new NoSuchElementException();
 		resultat = aktuell.getElement();
 		aktuell = aktuell.getNeste();
-		
+
 		return resultat;
 	}
 

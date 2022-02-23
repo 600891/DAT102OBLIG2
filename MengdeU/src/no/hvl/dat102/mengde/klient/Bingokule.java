@@ -8,7 +8,7 @@ public class Bingokule {
 
 	/**
 	 * Konstruktør
-	 * 
+	 *
 	 * @param verdi mellom 1 og 75
 	 */
 	public Bingokule(int verdi) {
@@ -27,7 +27,7 @@ public class Bingokule {
 
 	/**
 	 * Tester om to bingokuler er like
-	 * 
+	 *
 	 * @param k2 bingokule
 	 **/
 	// hashCode er tema senere.
@@ -45,10 +45,7 @@ public class Bingokule {
 		if (this == ny) {
 			return true;
 		}
-		if (ny == null) {
-			return false;
-		}
-		if (getClass() != ny.getClass()) {
+		if ((ny == null) || (getClass() != ny.getClass())) {
 			return false;
 		}
 
@@ -58,7 +55,7 @@ public class Bingokule {
 
 	/**
 	 * Strengrepresentasjon av bingokule
-	 * 
+	 *
 	 */
 	@Override
 	public String toString() {

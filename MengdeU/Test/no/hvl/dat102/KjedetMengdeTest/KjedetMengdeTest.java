@@ -1,9 +1,6 @@
-package no.hvl.dat102.test;
+package no.hvl.dat102.KjedetMengdeTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
+import no.hvl.dat102.MengdeADTTest.MengdeADTTest;
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 
@@ -11,7 +8,7 @@ class KjedetMengdeTest extends MengdeADTTest{
 
 	@Override
 	protected MengdeADT<Integer> reset() {
-		return new KjedetMengde<Integer>();
+		return new KjedetMengde<>();
 	}
 
 }

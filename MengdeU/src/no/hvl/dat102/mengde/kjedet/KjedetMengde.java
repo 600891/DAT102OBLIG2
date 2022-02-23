@@ -1,7 +1,7 @@
 package no.hvl.dat102.mengde.kjedet;
 
 //********************************************************************
-// Kjedet implementasjon av en mengde. 
+// Kjedet implementasjon av en mengde.
 //********************************************************************
 import java.util.Iterator;
 import java.util.Random;
@@ -23,9 +23,20 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	}//
 
 	@Override
+	public String toString() {
+		String resultat = "";
+		LinearNode<T> aktuell = start;
+		while(aktuell != null) {
+			resultat += aktuell.getElement().toString() + "\t";
+			aktuell = aktuell.getNeste();
+		}
+		return resultat;
+	}
+
+	@Override
 	public void leggTil(T element) {
 		if (!(inneholder(element))) {
-			LinearNode<T> node = new LinearNode<T>(element);
+			LinearNode<T> node = new LinearNode<>(element);
 			node.setNeste(start);
 			start = node;
 			antall++;
@@ -134,10 +145,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		if (this == ny) {
 			return true;
 		}
-		if (ny == null) {
-			return false;
-		}
-		if (getClass() != ny.getClass()) {
+		if ((ny == null) || (getClass() != ny.getClass())) {
 			return false;
 		}
 		boolean likeMengder = true;
@@ -172,7 +180,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
 		// TODO - lage en mer effektiv kode
-		MengdeADT<T> begge = new KjedetMengde<T>();
+		MengdeADT<T> begge = new KjedetMengde<>();
 		LinearNode<T> aktuell = start;
 		T element = null;
 
@@ -196,7 +204,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
 		//Snitt skal ta felles elementer fra this og m2, og legge de inn i en ny mengde.
 
-		MengdeADT<T> snittM = new KjedetMengde<T>();
+		MengdeADT<T> snittM = new KjedetMengde<>();
 		Iterator<T> teller = m2.iterator();
 		//mens m2 har flere elementer skal en while-loop gå gjennom og sammenligne elementer
 		while (teller.hasNext()) {
@@ -211,7 +219,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		//Jeg antar at differens er this-mengden minus m2-mengden.
-		MengdeADT<T> differensM = new KjedetMengde<T>();
+		MengdeADT<T> differensM = new KjedetMengde<>();
 		Iterator<T> teller = this.iterator();
 		while(teller.hasNext()) {
 			T element = teller.next();
@@ -241,11 +249,11 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return new KjedetIterator<T>(start);
+		return new KjedetIterator<>(start);
 	}
 
 	private void settInn(T element) {
-		LinearNode<T> nyNode = new LinearNode<T>(element);
+		LinearNode<T> nyNode = new LinearNode<>(element);
 		nyNode.setNeste(start);
 		start = nyNode;
 		antall++;

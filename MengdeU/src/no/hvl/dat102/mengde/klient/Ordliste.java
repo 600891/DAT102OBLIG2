@@ -12,17 +12,17 @@ public class Ordliste {
 	 */
 	public static void main(String[] args) {
 
-		MengdeADT<String> ordListe1 = new KjedetMengde<String>();
+		MengdeADT<String> ordListe1 = new KjedetMengde<>();
 
 		String[] ord = { "God", "dag", "Hans", "Hansen", "Hansaby", "Foerde","Olsen", "Ole", "buss", "rute", "Bergen" };
 
 		Scanner tastatur = new Scanner(System.in);
 		// Legger til ordene i mengden ordListe1
 
-		for (int i = 0; i < ord.length; i++) {
-			ordListe1.leggTil(ord[i]);
+		for (String element : ord) {
+			ordListe1.leggTil(element);
 		}
-		MengdeADT<String> ordListe2 = new KjedetMengde<String>();
+		MengdeADT<String> ordListe2 = new KjedetMengde<>();
 
 		System.out.println("\nOppgi en streng, avslutt med zzz:\n");
 		String streng = tastatur.nextLine();
@@ -43,9 +43,9 @@ public class Ordliste {
 		} // while
 
 		// Lager unionen av de to ordlistene
-		MengdeADT<String> ordListeBegge = new KjedetMengde<String>();
+		MengdeADT<String> ordListeBegge = new KjedetMengde<>();
 
-		ordListeBegge = (KjedetMengde<String>) ordListe1.union(ordListe2);
+		ordListeBegge = ordListe1.union(ordListe2);
 
 		System.out.println("\nUtskrift av unionen av begge ordlistene");
 		String hentStreng = "";
@@ -56,9 +56,9 @@ public class Ordliste {
 		}
 
 		// Lager snittet av de to ordlistene
-		MengdeADT<String> ordListeFelles = new KjedetMengde<String>();
+		MengdeADT<String> ordListeFelles = new KjedetMengde<>();
 
-		ordListeFelles = (KjedetMengde<String>) ordListe1.snitt(ordListe2);
+		ordListeFelles = ordListe1.snitt(ordListe2);
 
 		System.out.println("\nUtskrift av snittet av begge ordlistene");
 		hentStreng = "";
@@ -69,9 +69,9 @@ public class Ordliste {
 		}
 
 		// Lager differansen av de to ordlistene
-		MengdeADT<String> ordListeDiff = new KjedetMengde<String>();
+		MengdeADT<String> ordListeDiff = new KjedetMengde<>();
 
-		ordListeDiff = (KjedetMengde<String>) ordListe1.differens(ordListe2);
+		ordListeDiff = ordListe1.differens(ordListe2);
 
 		System.out.println("\nUtskrift av differensen av begge ordlistene");
 		hentStreng = "";

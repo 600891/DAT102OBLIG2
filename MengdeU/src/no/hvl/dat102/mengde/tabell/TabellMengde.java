@@ -44,7 +44,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 			antall++;
 		}
 	}
-	
+
 	@Override
 	public void leggTilAlle(MengdeADT<T> m2) {
 		Iterator<T> teller = m2.iterator();
@@ -77,7 +77,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public T fjern(T element) {
-	
+
 		// Søker etter og fjerner element. Returnerer null-ref ved ikke-funn
 
 		if (erTom())
@@ -92,7 +92,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 				//tab[antall-1] = null;
 				antall--;
 				funnet = true;
-				
+
 			}
 		}
 		return svar;
@@ -108,7 +108,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		}
 		return (funnet);
 	}
-	
+
 	/*
 	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi også
 	 * overkjører hascode-metoden da en del biblioterker burker hascode sammen med
@@ -129,13 +129,10 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		if (this == m2) {
 			return true;
 		}
-		if (m2 == null) {
+		if ((m2 == null) || (m2.getClass() != this.getClass())) {
 			return false;
 		}
-		if (m2.getClass() != this.getClass()) {
-			return false;
-		}
-		
+
 		boolean likeMengder = true;
 		//typetvinger objektet m2 til å være en tabellmengde
 		MengdeADT<T> tab = (TabellMengde<T>) m2;
@@ -158,16 +155,16 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
 		//union er this-mengden og m2-mengden lagt sammen
-		MengdeADT<T> begge = new TabellMengde<T>();
+		MengdeADT<T> begge = new TabellMengde<>();
 		begge.leggTilAlle(this);
 		begge.leggTilAlle(m2);
-		
+
 		return begge;
 	}//end union
 
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
-		MengdeADT<T> snittM = new TabellMengde<T>();
+		MengdeADT<T> snittM = new TabellMengde<>();
 		T element = null;
 		Iterator<T> teller = m2.iterator();
 		while(teller.hasNext()) {
@@ -182,7 +179,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		//this uten m2-mengden
-		MengdeADT<T> differensM = new TabellMengde<T>();
+		MengdeADT<T> differensM = new TabellMengde<>();
 		T element;
 		Iterator<T> teller = this.iterator();
 		while(teller.hasNext()) {
@@ -210,7 +207,7 @@ public class TabellMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public Iterator<T> iterator() {
-		return new TabellIterator<T>(tab, antall);
+		return new TabellIterator<>(tab, antall);
 	}
 
 	private void settInn(T element) {
@@ -221,6 +218,6 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		antall++;
 	}
 
-	
+
 
 }// class
