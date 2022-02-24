@@ -223,6 +223,14 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		return new TabellIterator<>(tab, antall);
 	}
 
+	public T[] getTab() {
+		return tab;
+	}
+
+	public void setTab(T[] tab) {
+		this.tab = tab;
+	}
+
 	private void settInn(T element) {
 		if (antall == tab.length) {
 			utvidKapasitet();

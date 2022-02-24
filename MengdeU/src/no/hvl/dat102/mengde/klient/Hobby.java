@@ -9,7 +9,7 @@ public class Hobby {
 
 	@Override
 	public String toString() {
-		String resultat = this.hobbyNavn;
+		String resultat = "<" + this.hobbyNavn + ">";
 		return resultat;
 	}
 
