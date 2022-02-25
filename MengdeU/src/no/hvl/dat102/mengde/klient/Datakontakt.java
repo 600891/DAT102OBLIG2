@@ -7,6 +7,23 @@ import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Datakontakt {
 	private TabellMengde<Medlem> medlemTab;
+	
+	public TabellMengde<Medlem> getMedlemTab() {
+		return medlemTab;
+	}
+
+	public void setMedlemTab(TabellMengde<Medlem> medlemTab) {
+		this.medlemTab = medlemTab;
+	}
+
+	public int getAntallMedlemmer() {
+		return antallMedlemmer;
+	}
+
+	public void setAntallMedlemmer(int antallMedlemmer) {
+		this.antallMedlemmer = antallMedlemmer;
+	}
+
 	private int antallMedlemmer;
 	
 	public Datakontakt (TabellMengde<Medlem> medlemTab) {
@@ -43,6 +60,18 @@ public class Datakontakt {
 		return indeks;
 	}//finnMedlemsIndeks
 	
+	public Medlem finnMedlemMedIndeks(int statusIndeks) {
+		int indeks = -1;
+		int iterator = 0;
+		for(Medlem m : medlemTab) {
+			if(iterator == statusIndeks) {
+				return m;
+			}
+			iterator++;
+		}
+		return null;
+	}//finnMedlemMedIndeks
+	
 	
 	public int finnPartnerFor (String medlemsnavn) {
 		//Sjekker om et medlem passer med et annet, de passer hvis de har samme hobbyer og ikke er
@@ -55,7 +84,7 @@ public class Datakontakt {
 		} else {
 			int iterator = 0;
 			for(Medlem m : medlemTab) {
-				if(m.getStatusIndeks() == -1 && m.passerTil(medlem)) {
+				if(m.getStatusIndeks() == -1 && m.passerTil(medlem) && m != medlem) {
 					m.setStatusIndeks(finnMedlemsIndeks(medlem.getNavn()));
 					medlem.setStatusIndeks(finnMedlemsIndeks(m.getNavn()));
 					indeks = iterator;
