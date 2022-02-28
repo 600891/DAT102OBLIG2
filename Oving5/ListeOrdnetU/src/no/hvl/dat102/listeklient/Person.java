@@ -58,13 +58,10 @@ public class Person implements Comparable<Person> {
 				//Ignorerer case fordi compareTo sorterer store bokstaver før små bokstaver
 				resultat = fornavn.compareToIgnoreCase(denAndrePersonen.getFornavn());
 			}
-			
 		} else {
 			resultat = 1;
 		}
-		//... Fyll ut
-		//Kall på compareTo i Stringklassen
 		return resultat;
-	}//
+	}//end compareTo
 
 }// class
