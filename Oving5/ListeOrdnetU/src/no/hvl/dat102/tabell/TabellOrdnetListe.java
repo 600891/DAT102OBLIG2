@@ -1,5 +1,9 @@
 package no.hvl.dat102.tabell;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import no.hvl.dat102.adt.OrdnetListeADT;
 import no.hvl.dat102.exceptions.EmptyCollectionException;
 
@@ -24,8 +28,10 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
+		T resultat = siste();
+		fjern(siste());
+		bak--;
+		
 		return resultat;
 	}
 
@@ -34,8 +40,10 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ... Fyll ut
+		T resultat = liste[0];
+		fjern(liste[0]);
+		bak--;
+		
 		return resultat;
 	}
 
@@ -52,11 +60,8 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	public T siste() {
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
-		
-		T resultat = null;
-		// ...Fyll ut
 
-		return resultat;
+		return liste[bak-1];
 	}
 
 	@Override
@@ -71,8 +76,31 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-
-		// ...Fyll ut
+		T[] hjelper = (T[]) (new Comparable[liste.length]);
+		if (bak >= liste.length) {
+			utvid();
+		}
+		if(erTom()) {
+			liste[0] = element;
+		} else if (element.compareTo(siste()) > 0) {
+			liste[bak] = element;
+		} else {
+			int i = 0;
+			while(liste[i].compareTo(element) <= 0){
+				i++;
+			}
+			for(int j = 0; j < i; j++) {
+				hjelper[j] = liste[j];
+			}
+			
+			hjelper[i] = element;
+			
+			for(int j = i +1; j < bak+1; j++) {
+				hjelper[j] = liste[j-1];
+			}
+			liste = hjelper;
+		}
+		bak++;
 	}
 
 	@Override
@@ -82,14 +110,32 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjern(T element) {
-		// ...Fyll ut
-		return element;
+		int indeks = finn(element);
+		if (indeks == IKKE_FUNNET) {
+			return null;
+		}
+		T resultat = liste[indeks];
+		//liste[indeks] = liste[bak-1]; //Flytter bakerste element på den ledige plassen
+		//bak--;
+		
+		for (int i = indeks; i < bak-1; i++) {
+			liste[i] = liste[i+1];
+		}
+		bak--;
+		
+		return resultat;
 
 	}
 
 	private int finn(T el) {
 		int i = 0, resultat = IKKE_FUNNET;
-		// ...Fyll ut
+		while (bak > i) {
+			if (liste[i].equals(el)) {
+				return i;
+			}
+			i++;
+		}
+				
 		return resultat;
 	}
 
