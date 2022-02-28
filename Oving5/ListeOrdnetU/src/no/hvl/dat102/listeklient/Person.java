@@ -50,7 +50,18 @@ public class Person implements Comparable<Person> {
 
 	public int compareTo(Person denAndrePersonen) {
 		int resultat = 0;
-		detAndre.
+		if(foedselsaar < denAndrePersonen.getFoedselsaar()) {
+			resultat = -1;
+		} else if (foedselsaar == denAndrePersonen.getFoedselsaar()) {
+			resultat = etternavn.compareToIgnoreCase(denAndrePersonen.getEtternavn());
+			if(resultat == 0) {
+				//Ignorerer case fordi compareTo sorterer store bokstaver før små bokstaver
+				resultat = fornavn.compareToIgnoreCase(denAndrePersonen.getFornavn());
+			}
+			
+		} else {
+			resultat = 1;
+		}
 		//... Fyll ut
 		//Kall på compareTo i Stringklassen
 		return resultat;
