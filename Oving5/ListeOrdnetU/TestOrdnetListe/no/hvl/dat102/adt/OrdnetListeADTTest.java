@@ -83,6 +83,7 @@ public abstract class OrdnetListeADTTest {
 		liste.leggTil(e0);
 		liste.leggTil(e4);
 		liste.leggTil(e3);
+		System.out.println(liste.fjernFoerste());
 		assertEquals(e0, liste.fjernFoerste());
 		assertEquals(e1, liste.fjernFoerste());
 		assertEquals(e2, liste.fjernFoerste());

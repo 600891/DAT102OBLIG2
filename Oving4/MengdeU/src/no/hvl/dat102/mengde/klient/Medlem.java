@@ -16,7 +16,7 @@ public class Medlem {
 	public boolean passerTil (Medlem medlem2){
 		//to medlemmer passer til hverandre hvis de har like hobbyer, altsaa like mengder
 		if(this == medlem2) {
-			return true;
+			return false;
 		}
 		if(medlem2 == null || this.getClass() != medlem2.getClass()) {
 			return false;

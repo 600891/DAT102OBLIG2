@@ -31,6 +31,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if(foerste == null) { //lista blir tom etter fjerning
 			siste = null;
 		}
+		antall--;
 		return resultat;
 	}
 
